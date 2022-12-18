@@ -10,6 +10,8 @@ namespace Editor.ManualCustomEditor
         [SerializeField] private VisualTreeAsset m_VisualTreeAsset = default;
         [SerializeField] private VisualTreeAsset m_UXMLTree = default;
 
+        private int m_clickCount;
+
         [MenuItem("CustomEditor/Manual")]
         public static void ShowExample()
         {
@@ -39,6 +41,32 @@ namespace Editor.ManualCustomEditor
             toggle.name = "toggle3";
             toggle.label = "Number?";
             root.Add(toggle);
+
+            SetupButtonHandler();
+        }
+
+        // ボタンクリック数を数えるイベントハンドラー
+        private void SetupButtonHandler()
+        {
+            var buttons = rootVisualElement.Query<Button>();
+            buttons.ForEach(RegisterHandler);
+        }
+
+        private void RegisterHandler(Button button)
+        {
+            button.RegisterCallback<ClickEvent>(PrintClickMessage);
+        }
+
+        private void PrintClickMessage(ClickEvent evt)
+        {
+            ++m_clickCount;
+            
+            Button button = evt.currentTarget as Button;
+            string buttonNumber = button.name.Substring("button".Length);
+            string toggleName = "toggle" + buttonNumber;
+            Toggle toggle = rootVisualElement.Q<Toggle>(toggleName);
+            
+            Debug.Log("Button was clicked!" + (toggle.value ? " Count : " + m_clickCount : ""));
         }
     }
 }

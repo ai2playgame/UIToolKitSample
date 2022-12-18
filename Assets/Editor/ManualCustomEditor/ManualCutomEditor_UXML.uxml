@@ -7,5 +7,5 @@ xsi:noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd"
 >
 <engine:Label text="These controls were created with UXML." />
 <engine:Button text="This is button2" name="button2" />
-<engine:Toggle label="Number?" name="label2" />
+<engine:Toggle label="Number?" name="toggle2" />
 </engine:UXML>
