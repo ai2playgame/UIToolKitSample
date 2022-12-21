@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements"
+         noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Editor/Manual/002/FirstUSS.uss?fileID=7433441132597879392&amp;guid=1096248811de18044a5068d874b56be1&amp;type=3#FirstUSS"/>
+    <ui:Label name="label" tabindex="-1" text="Label" display-tooltip-when-elided="true" />
+    <ui:Button name= "button" text="Button" display-tooltip-when-elided="true" class="sample-button" />
+</ui:UXML>
