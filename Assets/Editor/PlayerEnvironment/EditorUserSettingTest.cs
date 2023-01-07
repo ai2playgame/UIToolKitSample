@@ -3,7 +3,10 @@ using UnityEngine;
 
 namespace Editor.PlayerEnvironment
 {
-    public class EditorUserSettingTest
+    // EditorUserSettingsは、UserSettings以下に記録される。
+    // 今登録しているKeyをまとめて取得する方法はおそらくないので、
+    // 自前で作って、Library以下にJSONを保存するような仕組みを作ったほうがよさそう
+    public static class EditorUserSettingTest
     {
         private const string MENU_NAME = "Config/";
         private const string VAL_NAME = "Example";
