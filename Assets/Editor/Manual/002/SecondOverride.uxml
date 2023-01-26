@@ -1,6 +1,0 @@
-﻿<ui:UXML xmlns:ui="UnityEngine.UIElements">
-    <ui:Template name="SecondTemplate" src="./SecondTemplate.uxml" />
-    <ui:Instance template="SecondTemplate">
-        <ui:AttributeOverrides element-name="label1" text="This override a text" />
-    </ui:Instance>
-</ui:UXML>

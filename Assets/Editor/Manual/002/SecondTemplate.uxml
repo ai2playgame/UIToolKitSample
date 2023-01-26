@@ -1,3 +1,0 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements">
-    <ui:Label name="label1" text="fire"/>
-</ui:UXML>
