@@ -7,7 +7,7 @@ namespace Editor.Manual.Examples.RelativeAndAbsolutePositioning
 {
     public class PositioningTestWindow : EditorWindow
     {
-        [MenuItem("UI Toolkit/Docs/Examples/PositioningTestWindow")]
+        [MenuItem("UI Toolkit/Docs/Examples/001-PositioningTestWindow")]
         public static void ShowExample()
         {
             var wnd = GetWindow<PositioningTestWindow>();
