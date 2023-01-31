@@ -14,15 +14,22 @@ namespace Editor.CollectInspectorWindow
             CollectInspectorWindow wnd = GetWindow<CollectInspectorWindow>("Collect Inspector Window");
         }
 
+        private void OnInspectorUpdate()
+        {
+            Repaint();
+        }
+        
         private void CreateGUI()
         {
-            var targetComponent = GameObject.FindObjectOfType<SimpleObject>();
+            var targets = FindObjectsOfType<SimpleObject>();
 
             var root = rootVisualElement;
 
-            InspectorElement inspector = new InspectorElement(targetComponent);
-            
-            root.Add(inspector);
+            foreach (var target in targets)
+            {
+                InspectorElement inspector = new InspectorElement(target);
+                root.Add(inspector);
+            }
         }
     }
 }
