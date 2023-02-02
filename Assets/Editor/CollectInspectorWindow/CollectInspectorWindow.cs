@@ -3,6 +3,7 @@ using System.Linq;
 using Runtime.Scripts;
 using UnityEditor;
 using UnityEditor.UIElements;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Editor.CollectInspectorWindow
@@ -20,6 +21,9 @@ namespace Editor.CollectInspectorWindow
             Repaint();
         }
 
+        private ObjectField _objectField;
+        private Label _statLabel;
+
         private void CreateGUI()
         {
             var root = rootVisualElement;
@@ -29,6 +33,12 @@ namespace Editor.CollectInspectorWindow
 
             var updatedButton = new ToolbarButton() { text = "Update" };
             toolbar.Add(updatedButton);
+
+            _objectField = new ObjectField("Script") { objectType = typeof(MonoScript) };
+            root.Add(_objectField);
+
+            _statLabel = new Label();
+            root.Add(_statLabel);
 
             // ボタンを押したらCollectObjectsが呼ばれるように
             updatedButton.clicked += CollectObjects;
@@ -49,10 +59,21 @@ namespace Editor.CollectInspectorWindow
                 _listView = null;
             }
 
+            var script = ((_objectField.value as MonoScript));
+            if (script == null)
+            {
+                _statLabel.text = $"(not found)";
+                return;
+            }
+
+            var type = script.GetClass();
+            
             _listView = new ListView();
 
-            var targets = FindObjectsOfType<SimpleObject>().ToList();
+            var targets = FindObjectsOfType(type).ToList();
             targets.Sort((lhs, rhs) => String.Compare(lhs.name, rhs.name, StringComparison.Ordinal));
+
+            _statLabel.text = $"total: {targets.Count}";
 
             _listView.itemsSource = targets;
             _listView.makeItem = () =>
